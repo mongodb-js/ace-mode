@@ -8,13 +8,137 @@ MongoDB ACE mode
 npm install --save mongodb-ace-mode
 ```
 
-## Notes
 
-https://github.com/ajaxorg/ace/blob/master/lib/ace/theme/monokai.css
-https://ace.c9.io/build/kitchen-sink.html
-https://github.com/ajaxorg/ace/wiki/Creating-or-Extending-an-Edit-Mode
+## Discovery
+https://codepen.io/imlucas/pen/eXJOrm
 
-### Basic Exploration
+<style>
+/**
+ * Parens
+ * {}[]()
+ */
+.ace-mongodb .ace_paren {
+  font-weight: normal;
+  color: blue;
+}
+
+/**
+ * Quotes around a "field name"
+ * "$trends.icecream_cpi"
+ */
+.ace_string.ace_quasi{
+    color: magenta !important;
+}
+
+/**
+ * Field names
+ * _id, average_cpi, etc.
+ */
+.ace_identifier {
+  color: green;
+}
+
+/**
+ * Aggregation Operators
+ * $avg $min $max
+ */
+.ace-mongodb .ace_support.ace_function {
+  color: orange;
+}
+
+/**
+ * BOILERPLATE BELOW
+ */
+.ace-mongodb .ace_gutter {
+background: #f5f6f7;
+color: #999999;
+}
+.ace-mongodb  {
+  border: 1px solid #eee;
+  padding: 10px;
+  //background: #f5f6f7;
+  color: #000;
+  font-family: Monaco;
+  
+}
+.ace-mongodb .ace_keyword {
+color: #999999;
+font-weight: normal;
+}
+.ace-mongodb .ace_gutter-cell {
+padding-left: 5px;
+padding-right: 10px;
+}
+.ace-mongodb .ace_string {
+color: #5b81a9;
+}
+.ace-mongodb .ace_boolean {
+color: #5b81a9;
+font-weight: normal;
+}
+.ace-mongodb .ace_constant.ace_numeric {
+color: #5b81a9;
+}
+.ace-mongodb .ace_string.ace_regexp {
+color: #5b81a9;
+}
+.ace-mongodb .ace_variable.ace_class {
+color: teal;
+}
+.ace-mongodb .ace_constant.ace_buildin {
+color: #0086B3;
+}
+
+/*
+.ace-mongodb .ace_support.ace_function {
+  color: #0086B3;
+}
+*/
+.ace-mongodb .ace_comment {
+color: #998;
+font-style: italic;
+}
+.ace-mongodb .ace_variable.ace_language  {
+color: #0086B3;
+}
+
+</style>
+<div class="ace-mongodb">
+  <div class="ace_layer ace_text-layer" style="padding: 0px 4px;">
+    <div class="ace_line" style="height:15px">
+      <span class="ace_paren ace_lparen">{</span>
+    </div>
+    <div class="ace_line" style="height:15px">&nbsp;&nbsp;<span class="ace_identifier">_id</span><span class="ace_punctuation ace_operator">:</span><span class="ace_constant ace_numeric"> 0</span><span class="ace_punctuation ace_operator">,</span></div>
+    <div class="ace_line" style="height:15px">&nbsp;&nbsp;<span class="ace_identifier">average_cpi</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span><span class="ace_support ace_function">$avg</span><span class="ace_punctuation ace_operator">:</span><span class="ace_string ace_quasi ace_start">"</span><span class="ace_variable ace_language">$trends.icecream_cpi</span><span class="ace_string ace_quasi ace_end">"</span><span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div>
+    <div class="ace_line" style="height:15px">&nbsp;&nbsp;<span class="ace_identifier">max_cpi</span><span class="ace_punctuation ace_operator">:</span><span class="ace_paren ace_lparen">{</span><span class="ace_support ace_function">$max</span><span class="ace_punctuation ace_operator">:</span><span class="ace_string ace_quasi ace_start">"</span><span class="ace_variable ace_language">$trends.icecream_cpi</span><span class="ace_string ace_quasi ace_end">"</span><span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span>
+      </div>
+    <div class="ace_line" style="height:15px">
+      &nbsp;&nbsp;<span class="ace_identifier">min_cpi</span><span class="ace_punctuation ace_operator">:</span><span class="ace_paren ace_lparen">{</span><span class="ace_support ace_function">$min</span><span class="ace_punctuation ace_operator">:</span><span class="ace_string ace_quasi ace_start">"</span><span class="ace_variable ace_language">$trends.icecream_cpi</span><span class="ace_string ace_quasi ace_end">"</span><span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div>
+    <div class="ace_line" style="height:15px">
+      &nbsp;&nbsp;<span class="ace_identifier">cpi_deviation</span><span class="ace_punctuation ace_operator">:</span><span class="ace_paren ace_lparen">{</span><span class="ace_support ace_function">$stdDevPop</span><span class="ace_punctuation ace_operator">:</span><span class="ace_string ace_quasi ace_start">"</span><span class="ace_variable ace_language">$trends.icecream_cpi</span><span class="ace_string ace_quasi ace_end">"</span><span class="ace_paren ace_rparen">}</span></div>
+    <div class="ace_line" style="height:15px"><span class="ace_paren ace_rparen">}</span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<br />
+
+
+### Notes
+
+- https://github.com/ajaxorg/ace/blob/master/lib/ace/theme/monokai.css
+- https://ace.c9.io/build/kitchen-sink.html
+- https://github.com/ajaxorg/ace/wiki/Creating-or-Extending-an-Edit-Mode
+
+### Basic 
 
 Given:
 
