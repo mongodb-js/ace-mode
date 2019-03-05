@@ -103,6 +103,7 @@ color: #0086B3;
 }
 
 </style>
+
 <div class="ace-mongodb">
   <div class="ace_layer ace_text-layer" style="padding: 0px 4px;">
     <div class="ace_line" style="height:15px">
@@ -121,18 +122,79 @@ color: #0086B3;
   </div>
 </div>
 
+### Thinking
+
+```javascript
+/**
+ * Gathering stats when items are in an array using 
+ * $project accumulators.
+ */
+
+ /**
+  * 1. Default JS highlighter 
+  */
+db.icecream_data.aggregate([
+  {
+    _id: 0,
+    average_cpi: {
+      $avg: "$trends.icecream_cpi"
+    },
+    max_cpi: {
+      $max: "$trends.icecream_cpi"
+    },
+    min_cpi: {
+      $min: "$trends.icecream_cpi"
+    },
+    cpi_deviation: {
+      $stdDevPop: "$trends.icecream_cpi"
+    }
+  }
+]);
+
+/**
+ * 2. What if `$` operators were JS functions
+ *    like in various "aggy" helper experiments?
+ */
+db.icecream_data.aggregate([{
+  _id: include(false),
+  average_cpi: avg('trends.icecream_cpi'),
+  max_cpi: max('trends.icecream_cpi'),
+  min_cpi: min('trends.icecream_cpi'),
+  cpi_deviation: stdDevPop('trends.icecream_cpi')
+}]);
+
+/**
+ * 3. What if `$` operators same as 2 but with 
+ *  "magic" template strings?
+ */
+db.icecream_data.aggregate([{
+  _id: include(false),
+  average_cpi: avg(`${trends.icecream_cpi}`),
+  max_cpi: max(`${trends.icecream_cpi}`),
+  min_cpi: min(`${trends.icecream_cpi}`),
+  cpi_deviation: stdDevPop(`${trends.icecream_cpi}`)
+}]);
+```
+
+There are 3 different ways I was thinking about this to get as close to what a developer would expect.  (Top left editor panel in screenshot).
+
+`Case #3` of js template strings: We can discriminate between `"|'` and `$field` in aggregation styling, just like \``\`, `${|}`, and `field` for a template string. The power here is:
+
+- `field` links back visually to the property on the left
+- Avoid typos of 'field' instead of '$field' (especially when creating a view!) by distinguishing those two.
+
+![](https://www.dropbox.com/s/7soe72zzc062kfm/Screenshot%202019-03-01%2010.20.14.png?dl=1)
+
+### Data
+
+[The Best Visual Studio Code Dark and Light Themes (Updated Feb 2019)](https://medium.com/@chibicode/the-best-visual-studio-code-dark-and-light-themes-july-2018-edition-a9c2cc9548da)
+
+[OneDark Pro](https://github.com/Binaryify/OneDark-Pro) Most installed by a giant margin 
+
+Pertsonal preference: [Monokai](https://marketplace.visualstudio.com/items?itemName=gerane.Theme-Monokai) Used for more than a decade as Editor of choice has changed (TextMate :arrow_right: SublimeText :arrow_right: Atom :arrow_right: VSCode)
 
 
-
-
-
-
-
-
-<br />
-
-
-### Notes
+### Links
 
 - https://github.com/ajaxorg/ace/blob/master/lib/ace/theme/monokai.css
 - https://ace.c9.io/build/kitchen-sink.html
