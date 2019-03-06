@@ -8,6 +8,52 @@ MongoDB ACE mode
 npm install --save mongodb-ace-mode
 ```
 
+## Highlighting
+
+### Operators -> ace_function
+
+Given: 
+
+```
+max_cpi: {$max: "$trends.icecream_cpi"}
+```
+
+```html
+<div class="ace_line" style="height:15px">
+  <span class="ace_identifier">max_cpi</span>
+  <span class="ace_punctuation ace_operator">:</span>
+  <span class="ace_paren ace_lparen">{</span>
+  <span class="ace_support ace_function">$max</span>
+  <span class="ace_punctuation ace_operator">:</span>
+  <span class="ace_string ace_quasi ace_start">"</span>
+  <span class="ace_variable ace_language">$trends.icecream_cpi</span>
+  <span class="ace_string ace_quasi ace_end">"</span>
+  <span class="ace_paren ace_rparen">}</span>
+</div>
+```
+
+### Field usage -> ace_variable
+
+Given: 
+
+```
+type: "$type"
+```
+
+<div class="ace_line" style="height:15px">
+  <span class="ace_identifier">type</span>
+  <span class="ace_punctuation ace_operator">:</span> 
+  <span class="ace_string ace_quasi ace_start">"</span>
+  <span class="ace_variable ace_parameter">$type</span>
+  <span class="ace_punctuation ace_operator">"</span>
+</div>
+
+<!-- ### Locally defined variable usage -> ace_variable ace_other
+
+```
+ace_other">$$localType</span>
+``` -->
+
 
 ## Discovery
 https://codepen.io/imlucas/pen/eXJOrm
